@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop Doctor (offline)</title>
+<style>
+:root{--bg:#f3f7ef;--ink:#17261a;--card:#ffffff;--green:#2e7d32;--line:#d3e0cf;--warn:#b26a00;--bad:#b3261e;--mute:#5b6b5d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Bengali","Noto Sans Devanagari","Nirmala UI","Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.5}
+header{position:sticky;top:0;z-index:5;background:var(--green);color:#fff;padding:10px 14px}
+header .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+h1{font-size:20px;margin:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:2px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:6px 14px;font-size:17px;cursor:pointer}
+.chip.on{background:#fff;color:var(--green);font-weight:700}
+#net{font-size:14px;margin-top:4px}
+main{max-width:760px;margin:0 auto;padding:14px}
+.banner{border-radius:10px;padding:8px 12px;margin:8px 0;font-size:15px}
+.demo{background:#ffe9e7;border:2px solid var(--bad);color:var(--bad);font-weight:700}
+.draft{background:#fff4dc;border:1px solid var(--warn);color:#6b4300}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+button.big{font-size:20px;padding:14px 18px;border-radius:12px;border:0;background:var(--green);color:#fff;cursor:pointer;min-height:54px}
+button.alt{background:#fff;color:var(--green);border:2px solid var(--green)}
+button.big:disabled{opacity:.5}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+video,#photo{width:100%;max-height:60vh;border-radius:12px;background:#000;object-fit:contain}
+.bar{height:22px;border-radius:11px;background:#e6ede3;overflow:hidden;margin:6px 0}
+.bar>div{height:100%}
+.mild{background:#6aa84f}.moderate{background:#e69138}.severe{background:#cc0000}.conf{background:#3d85c6}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tab{border:2px solid var(--green);background:#fff;color:var(--green);border-radius:10px;padding:8px 12px;font-size:16px;cursor:pointer}
+.tab.on{background:var(--green);color:#fff}
+ul{padding-left:22px;margin:6px 0}li{margin:6px 0}
+.alert{background:#fdecea;border:2px solid var(--bad);border-radius:12px;padding:12px;margin:12px 0}
+.alert h3{margin:0 0 6px;color:var(--bad)}
+.mute{color:var(--mute);font-size:15px}
+.ai{background:#eef3fb;border:1px dashed #3d85c6;border-radius:10px;padding:10px;margin-top:10px}
+.top3 div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0}
+.hidden{display:none}
+.spin{display:inline-block;width:18px;height:18px;border:3px solid #cfd8cc;border-top-color:var(--green);border-radius:50%;animation:s 1s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes s{to{transform:rotate(360deg)}}
+footer{max-width:760px;margin:0 auto;padding:6px 14px 24px;color:var(--mute);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="row"><h1 data-t="title"></h1><div class="chips" id="chips"></div></div>
+  <div id="net"></div>
+</header>
+<main>
+  <div id="demoBanner" class="banner demo hidden">DEMO MODE: trained model not loaded. Results are NOT real. Pick a demo condition below.</div>
+
+  <section id="capture" class="card">
+    <div id="demoPick" class="hidden"><label>Demo condition: <select id="demoClass"></select></label></div>
+    <p><strong data-t="takePhoto"></strong></p>
+    <video id="video" autoplay playsinline muted class="hidden"></video>
+    <p id="camNote" class="mute"></p>
+    <div class="btns">
+      <button class="big" id="shot" data-t="capture"></button>
+      <button class="big alt" id="pick" data-t="choose"></button>
+    </div>
+    <input id="file" type="file" accept="image/*" class="hidden">
+    <canvas id="canvas" class="hidden"></canvas>
+  </section>
+
+  <section id="loading" class="card hidden"><span class="spin"></span><span data-t="analyzing"></span></section>
+  <section id="result" class="hidden"></section>
+</main>
+<footer data-t="footer"></footer>
+
+<script>
+(function () {
+"use strict";
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const LANGS = [["bn", "বাংলা"], ["as", "অসমীয়া"], ["hi", "हिन्दी"], ["en", "English"]];
+const SEVS = ["mild", "moderate", "severe"];
+const TOPICS = [["treat", "tabTreat"], ["symptoms", "tabSymptoms"], ["why", "tabWhy"], ["prevent", "tabPrevent"], ["organic", "tabOrganic"], ["escalate", "tabEscalate"]];
+
+const T = {
+en: {title: "Crop Doctor (offline)", takePhoto: "Take a photo of one leaf", capture: "Capture", choose: "Choose a photo",
+ picamReady: "Pi camera ready: press Capture", noCamera: "Camera not available: choose a photo instead", analyzing: "Checking the leaf...",
+ offline: "Offline: working without internet", online: "Online (the app does not need it)",
+ found: "Problem found", sure: "How sure", howBad: "How bad", mild: "Mild", moderate: "Moderate", severe: "Severe",
+ unclearSev: "Severity not measured (use a plain background)", showArea: "Show affected area", hideArea: "Show photo",
+ tabTreat: "What to do", tabSymptoms: "What it looks like", tabWhy: "Why it happens", tabPrevent: "How to prevent it",
+ tabOrganic: "Natural options", tabEscalate: "When to call an officer",
+ contactTitle: "Contact your officer", severeText: "This looks serious. Please contact your KVK or agriculture officer today.",
+ listen: "Listen", aiBtn: "More detail (AI, may be wrong)", aiNote: "AI text is not verified. Follow the advice above.",
+ aiUnavailable: "AI explanation not available (the advice above still applies)", aiHidden: "AI text hidden: it did not pass the safety checks.",
+ notSure: "Not sure", retakeTips: "Take a new photo: one leaf, 15-30 cm away, plain background, good daylight.",
+ possibleTitle: "Possible problem (not sure)", possibleHint: "I am not sure. Check the other possibilities and take a clearer photo.",
+ healthyMsg: "The leaf looks healthy.", notALeaf: "This does not look like a crop leaf.",
+ noCard: "No verified advice for this problem yet. Please contact your KVK or agriculture officer.",
+ draft: "Draft advice, not yet reviewed by an expert", newPhoto: "New photo", others: "Other possibilities",
+ unverified: "(check this number)", checkedIn: "Checked on this device in",
+ footer: "Advice only. Confirm any treatment with your KVK or agriculture officer."},
+bn: {title: "ফসল চিকিৎসক (অফলাইন)", takePhoto: "একটি পাতার ছবি তুলুন", capture: "ছবি তুলুন", choose: "ছবি বাছাই করুন",
+ picamReady: "পাই ক্যামেরা প্রস্তুত: ‘ছবি তুলুন’ চাপুন", noCamera: "ক্যামেরা পাওয়া যায়নি: ছবি বাছাই করুন", analyzing: "পাতা পরীক্ষা করা হচ্ছে…",
+ offline: "অফলাইন: ইন্টারনেট ছাড়াই চলছে", online: "অনলাইন (অ্যাপের ইন্টারনেট লাগে না)",
+ found: "সমস্যা চিহ্নিত", sure: "কতটা নিশ্চিত", howBad: "কতটা গুরুতর", mild: "হালকা", moderate: "মাঝারি", severe: "গুরুতর",
+ unclearSev: "গুরুত্ব মাপা যায়নি (একরঙা পটভূমিতে ছবি তুলুন)", showArea: "আক্রান্ত অংশ দেখান", hideArea: "ছবি দেখান",
+ tabTreat: "কী করবেন", tabSymptoms: "দেখতে কেমন", tabWhy: "কেন হয়", tabPrevent: "কীভাবে আটকাবেন",
+ tabOrganic: "প্রাকৃতিক উপায়", tabEscalate: "কখন আধিকারিককে ডাকবেন",
+ contactTitle: "আধিকারিকের সঙ্গে যোগাযোগ করুন", severeText: "এটি গুরুতর মনে হচ্ছে। আজই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।",
+ listen: "শুনুন", aiBtn: "আরও বিস্তারিত (এআই, ভুল হতে পারে)", aiNote: "এআই-এর লেখা যাচাই করা নয়। উপরের পরামর্শ মানুন।",
+ aiUnavailable: "এআই ব্যাখ্যা পাওয়া যায়নি (উপরের পরামর্শ প্রযোজ্য)", aiHidden: "এআই-এর লেখা লুকানো হয়েছে: নিরাপত্তা যাচাই পাস করেনি।",
+ notSure: "নিশ্চিত নই", retakeTips: "নতুন ছবি তুলুন: একটি পাতা, ১৫–৩০ সেমি দূর থেকে, একরঙা পটভূমি, ভালো দিনের আলো।",
+ possibleTitle: "সম্ভাব্য সমস্যা (নিশ্চিত নই)", possibleHint: "আমি নিশ্চিত নই। অন্য সম্ভাবনাগুলো দেখুন এবং আরও পরিষ্কার ছবি তুলুন।",
+ healthyMsg: "পাতাটি সুস্থ দেখাচ্ছে।", notALeaf: "এটি ফসলের পাতা বলে মনে হচ্ছে না।",
+ noCard: "এই সমস্যার জন্য এখনও যাচাই করা পরামর্শ নেই। কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।",
+ draft: "খসড়া পরামর্শ, বিশেষজ্ঞ এখনও যাচাই করেননি", newPhoto: "নতুন ছবি", others: "অন্য সম্ভাবনা",
+ unverified: "(নম্বরটি যাচাই করুন)", checkedIn: "এই যন্ত্রেই পরীক্ষা হয়েছে",
+ footer: "এটি শুধু পরামর্শ। চিকিৎসার আগে কেভিকে বা কৃষি আধিকারিকের সঙ্গে নিশ্চিত হয়ে নিন।"},
+as: {title: "শস্য চিকিৎসক (অফলাইন)", takePhoto: "এখন পাতৰ ছবি তোলক", capture: "ছবি তোলক", choose: "ছবি বাছনি কৰক",
+ picamReady: "পাই কেমেৰা সাজু: ‘ছবি তোলক’ হেঁচা মাৰক", noCamera: "কেমেৰা পোৱা নগ'ল: ছবি বাছনি কৰক", analyzing: "পাত পৰীক্ষা কৰি আছে…",
+ offline: "অফলাইন: ইণ্টাৰনেট অবিহনে চলি আছে", online: "অনলাইন (এপটোক ইণ্টাৰনেট লাগে নালাগে)",
+ found: "সমস্যা চিনাক্ত", sure: "কিমান নিশ্চিত", howBad: "কিমান গুৰুতৰ", mild: "পাতল", moderate: "মধ্যম", severe: "গুৰুতৰ",
+ unclearSev: "গুৰুত্ব জুখিব পৰা নগ'ল (এক ৰঙী পটভূমিত ছবি তোলক)", showArea: "আক্ৰান্ত অংশ দেখুৱাওক", hideArea: "ছবি দেখুৱাওক",
+ tabTreat: "কি কৰিব", tabSymptoms: "দেখিবলৈ কেনেকুৱা", tabWhy: "কিয় হয়", tabPrevent: "কেনেকৈ প্ৰতিৰোধ কৰিব",
+ tabOrganic: "প্ৰাকৃতিক উপায়", tabEscalate: "কেতিয়া বিষয়াক জনাব",
+ contactTitle: "বিষয়াৰ সৈতে যোগাযোগ কৰক", severeText: "এয়া গুৰুতৰ যেন লাগিছে। আজিয়েই আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+ listen: "শুনক", aiBtn: "অধিক বিৱৰণ (এআই, ভুল হ'ব পাৰে)", aiNote: "এআইৰ লেখা যাচাই কৰা নহয়। ওপৰৰ পৰামৰ্শ মানি চলক।",
+ aiUnavailable: "এআই ব্যাখ্যা পোৱা নগ'ল (ওপৰৰ পৰামৰ্শ প্ৰযোজ্য)", aiHidden: "এআইৰ লেখা লুকুৱাই ৰখা হৈছে: সুৰক্ষা পৰীক্ষাত উত্তীৰ্ণ হোৱা নাই।",
+ notSure: "নিশ্চিত নহয়", retakeTips: "নতুন ছবি তোলক: এখন পাত, ১৫–৩০ ছেমি দূৰৰ পৰা, এক ৰঙী পটভূমি, ভাল দিনৰ পোহৰ।",
+ possibleTitle: "সম্ভাব্য সমস্যা (নিশ্চিত নহয়)", possibleHint: "মই নিশ্চিত নহয়। অন্য সম্ভাৱনাবোৰ চাওক আৰু অধিক স্পষ্ট ছবি তোলক।",
+ healthyMsg: "পাতখন সুস্থ যেন লাগিছে।", notALeaf: "এইটো শস্যৰ পাত যেন লগা নাই।",
+ noCard: "এই সমস্যাৰ বাবে এতিয়ালৈকে যাচাই কৰা পৰামৰ্শ নাই। কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+ draft: "খচৰা পৰামৰ্শ, বিশেষজ্ঞই এতিয়ালৈকে যাচাই কৰা নাই", newPhoto: "নতুন ছবি", others: "অন্য সম্ভাৱনা",
+ unverified: "(নম্বৰটো যাচাই কৰক)", checkedIn: "এই যন্ত্ৰতেই পৰীক্ষা হৈছে",
+ footer: "এয়া কেৱল পৰামৰ্শ। চিকিৎসাৰ আগতে কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে নিশ্চিত হওক।"},
+hi: {title: "फसल डॉक्टर (ऑफ़लाइन)", takePhoto: "एक पत्ती की फ़ोटो लें", capture: "फ़ोटो खींचें", choose: "फ़ोटो चुनें",
+ picamReady: "पाई कैमरा तैयार: ‘फ़ोटो खींचें’ दबाएँ", noCamera: "कैमरा उपलब्ध नहीं: फ़ोटो चुनें", analyzing: "पत्ती की जाँच हो रही है…",
+ offline: "ऑफ़लाइन: बिना इंटरनेट चल रहा है", online: "ऑनलाइन (ऐप को इंटरनेट की ज़रूरत नहीं)",
+ found: "समस्या मिली", sure: "कितना भरोसा", howBad: "कितनी गंभीर", mild: "हल्का", moderate: "मध्यम", severe: "गंभीर",
+ unclearSev: "गंभीरता नहीं मापी गई (एक रंग की पृष्ठभूमि पर फ़ोटो लें)", showArea: "प्रभावित हिस्सा दिखाएँ", hideArea: "फ़ोटो दिखाएँ",
+ tabTreat: "क्या करें", tabSymptoms: "कैसा दिखता है", tabWhy: "क्यों होता है", tabPrevent: "रोकथाम कैसे करें",
+ tabOrganic: "प्राकृतिक उपाय", tabEscalate: "अधिकारी को कब बुलाएँ",
+ contactTitle: "कृषि अधिकारी से संपर्क करें", severeText: "यह गंभीर लगता है। आज ही अपने केवीके या कृषि अधिकारी से संपर्क करें।",
+ listen: "सुनें", aiBtn: "और जानकारी (एआई, गलत हो सकता है)", aiNote: "एआई का पाठ जाँचा हुआ नहीं है। ऊपर की सलाह मानें।",
+ aiUnavailable: "एआई व्याख्या उपलब्ध नहीं (ऊपर की सलाह लागू है)", aiHidden: "एआई का पाठ छिपाया गया: सुरक्षा जाँच पास नहीं हुई।",
+ notSure: "पक्का नहीं", retakeTips: "नई फ़ोटो लें: एक पत्ती, 15–30 सेमी दूर से, एक रंग की पृष्ठभूमि, अच्छी रोशनी।",
+ possibleTitle: "संभावित समस्या (पक्का नहीं)", possibleHint: "मुझे पक्का नहीं है। अन्य संभावनाएँ देखें और साफ़ फ़ोटो लें।",
+ healthyMsg: "पत्ती स्वस्थ दिखती है।", notALeaf: "यह फ़सल की पत्ती नहीं लगती।",
+ noCard: "इस समस्या के लिए अभी जाँची हुई सलाह नहीं है। कृपया केवीके या कृषि अधिकारी से संपर्क करें।",
+ draft: "मसौदा सलाह, अभी विशेषज्ञ ने जाँची नहीं", newPhoto: "नई फ़ोटो", others: "अन्य संभावनाएँ",
+ unverified: "(नंबर जाँच लें)", checkedIn: "इसी उपकरण पर जाँच हुई",
+ footer: "यह केवल सलाह है। इलाज से पहले केवीके या कृषि अधिकारी से पुष्टि करें।"}
+};
+
+let lang = "bn", CFG = {}, R = null, topic = "treat", showOverlay = false, photoURL = "", stream = null, ai = null;
+try { lang = localStorage.getItem("lang") || "bn"; } catch (e) {}
+const t = k => (T[lang] && T[lang][k]) || T.en[k] || k;
+const pick = o => (o && (o[lang] || o.en)) || "";
+const asList = x => Array.isArray(x) ? x : (x ? [x] : []);
+const sevName = b => t(b);
+
+function chips() {
+  $("#chips").innerHTML = LANGS.map(([c, n]) => `<button class="chip ${c === lang ? "on" : ""}" data-l="${c}">${n}</button>`).join("");
+  $("#chips").querySelectorAll("button").forEach(b => b.onclick = () => { lang = b.dataset.l; try { localStorage.setItem("lang", lang); } catch (e) {} render(); });
+}
+function net() { $("#net").textContent = navigator.onLine ? t("online") : t("offline"); }
+
+function topicItems(card, key) {
+  const idx = SEVS.indexOf(R.severity_used || "moderate");
+  if (key === "treat") { let out = []; for (let i = 0; i <= Math.max(idx, 0); i++) { const o = card.actions_by_severity[SEVS[i]] || {}; out = out.concat(asList(o[lang] || o.en)); } return out; }
+  if (key === "symptoms") return asList(pick(card.symptoms));
+  if (key === "why") return asList(pick(card.favourable_conditions));
+  if (key === "prevent") return asList(pick(card.prevention));
+  if (key === "organic") return asList(pick(card.organic_options));
+  if (key === "escalate") return asList(pick(card.escalate_when));
+  return [];
+}
+
+function contactsHTML(alertStyle) {
+  const rows = (CFG.contacts || []).map(c => `<li><strong>${esc(pick(c.name))}</strong>: ${esc(c.phone)} ${c.verified ? "" : `<span class="mute">${esc(t("unverified"))}</span>`}</li>`).join("");
+  return `<ul>${rows}</ul>`;
+}
+
+function renderResult() {
+  const box = $("#result");
+  if (!R) { box.classList.add("hidden"); return; }
+  const card = R.card, names = R.top3[0].names, name = pick(names) || R.cls;
+  let h = "";
+  const meta = `<p class="mute">${esc(t("checkedIn"))}: ${R.ms.vision}${R.ms.severity ? " + " + R.ms.severity : ""} ms</p>`;
+  const top3 = `<div class="card"><strong>${esc(t("others"))}</strong><div class="top3">${R.top3.map(x => `<div><span>${esc(pick(x.names) || x.cls)}</span><span>${Math.round(x.p * 100)}%</span></div>`).join("")}</div></div>`;
+  const newBtn = `<div class="btns"><button class="big" id="again">${esc(t("newPhoto"))}</button></div>`;
+
+  if (R.route === "retake") {
+    h += `<div class="card"><h2>${esc(t("notSure"))}</h2><p>${esc(R.reason === "not_a_leaf" ? t("notALeaf") : t("retakeTips"))}</p><p class="mute">${esc(t("retakeTips"))}</p></div>${top3}${newBtn}`;
+  } else if (R.route === "healthy") {
+    h += `<div class="card"><h2>${esc(t("healthyMsg"))}</h2><p>${esc(name)}</p><div class="bar"><div class="conf" style="width:${Math.round(R.confidence * 100)}%"></div></div><p class="mute">${esc(t("sure"))}: ${Math.round(R.confidence * 100)}%</p></div>${meta}${newBtn}`;
+  } else if (R.route === "no_card") {
+    h += `<div class="card"><h2>${esc(t("found"))}: ${esc(name)}</h2><p>${esc(t("noCard"))}</p></div><div class="alert"><h3>${esc(t("contactTitle"))}</h3>${contactsHTML()}</div>${top3}${meta}${newBtn}`;
+  } else {
+    const pos = R.route === "possible", sev = R.severity, used = R.severity_used;
+    const photo = `<img id="photo" src="${showOverlay && R.overlay ? R.overlay : photoURL}" alt="">`;
+    const sevBlock = sev ? (sev.pct === null ? `<p class="mute">${esc(t("unclearSev"))}</p>` :
+      `<strong>${esc(t("howBad"))}: ${esc(sevName(sev.bucket))} (${Math.round(sev.pct)}%)</strong><div class="bar"><div class="${sev.bucket}" style="width:${Math.min(100, Math.round(sev.pct))}%"></div></div>`) : "";
+    h += `<div class="card">`;
+    if (pos) h += `<div class="banner draft"><strong>${esc(t("possibleTitle"))}</strong><br>${esc(t("possibleHint"))}</div>`;
+    h += `<h2 style="margin:4px 0">${esc(t("found"))}: ${esc(name)}</h2>
+      <strong>${esc(t("sure"))}: ${Math.round(R.confidence * 100)}%</strong><div class="bar"><div class="conf" style="width:${Math.round(R.confidence * 100)}%"></div></div>
+      ${sevBlock}${photo}
+      ${R.overlay ? `<div class="btns"><button class="big alt" id="ovl">${esc(showOverlay ? t("hideArea") : t("showArea"))}</button></div>` : ""}</div>`;
+    if (R.severe_alert) h += `<div class="alert"><h3>${esc(t("contactTitle"))}</h3><p>${esc(t("severeText"))}</p>${contactsHTML()}</div>`;
+    if (card && (String(card.status || "").toUpperCase().startsWith("DRAFT") || card.reviewed_by === "pending")) h += `<div class="banner draft">${esc(t("draft"))}</div>`;
+    h += `<div class="card"><p><strong>${esc(pick(card.summary))}</strong></p>
+      <div class="btns">${CFG.speak ? `<button class="big alt" id="listen">${esc(t("listen"))}</button>` : ""}</div>
+      <div class="tabs">${TOPICS.map(([k, lab]) => `<button class="tab ${k === topic ? "on" : ""}" data-k="${k}">${esc(t(lab))}</button>`).join("")}</div>
+      <ul>${topicItems(card, topic).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+    if (!R.severe_alert) h += `<div class="card"><div class="btns"><button class="big alt" id="contact">${esc(t("contactTitle"))}</button></div><div id="contactBox" class="hidden">${contactsHTML()}</div></div>`;
+    h += `<div class="card"><div class="btns"><button class="big alt" id="aiBtn">${esc(t("aiBtn"))}</button></div><div id="aiOut"></div></div>${pos ? top3 : ""}${meta}${newBtn}`;
+  }
+  box.innerHTML = h;
+  box.classList.remove("hidden");
+  wire();
+  if (ai) showAI();
+}
+
+function showAI() {
+  const out = $("#aiOut"); if (!out || !ai) return;
+  if (ai === "wait") { out.innerHTML = `<div class="ai"><span class="spin"></span></div>`; return; }
+  if (!ai.available) { out.innerHTML = `<div class="ai">${esc(t("aiUnavailable"))}</div>`; return; }
+  if (!ai.text) { out.innerHTML = `<div class="ai">${esc(t("aiHidden"))}</div>`; return; }
+  out.innerHTML = `<div class="ai">${esc(ai.text)}<p class="mute">${esc(t("aiNote"))}</p></div>`;
+}
+
+function wire() {
+  const g = id => document.getElementById(id);
+  if (g("again")) g("again").onclick = reset;
+  if (g("ovl")) g("ovl").onclick = () => { showOverlay = !showOverlay; renderResult(); };
+  if (g("contact")) g("contact").onclick = () => g("contactBox").classList.toggle("hidden");
+  document.querySelectorAll(".tab").forEach(b => b.onclick = () => { topic = b.dataset.k; renderResult(); });
+  if (g("listen")) g("listen").onclick = async () => {
+    const card = R.card;
+    const text = pick(card.summary) + " " + topicItems(card, "treat").join(" ");
+    try { const r = await fetch(`/api/speak?lang=${lang}&text=${encodeURIComponent(text)}`); if (!r.ok) throw 0; new Audio(URL.createObjectURL(await r.blob())).play(); } catch (e) {}
+  };
+  if (g("aiBtn")) g("aiBtn").onclick = async () => {
+    ai = "wait"; showAI();
+    try {
+      const r = await fetch("/api/explain", {method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({cls: R.cls, confidence: R.confidence, severity: R.severity_used, lang: lang === "bn" || lang === "as" ? "en" : lang})});
+      ai = await r.json();
+    } catch (e) { ai = {available: false}; }
+    showAI();
+  };
+}
+
+function render() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => el.textContent = t(el.dataset.t));
+  chips(); net(); renderResult();
+}
+
+async function startCamera() {
+  const v = $("#video");
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: {ideal: "environment"}, width: {ideal: 1280}}, audio: false});
+    v.srcObject = stream; v.classList.remove("hidden"); $("#camNote").textContent = "";
+  } catch (e) { v.classList.add("hidden"); $("#camNote").textContent = t("noCamera"); }
+}
+function stopCamera() { if (stream) { stream.getTracks().forEach(x => x.stop()); stream = null; } }
+
+async function analyze(blob) {
+  stopCamera();
+  $("#capture").classList.add("hidden"); $("#loading").classList.remove("hidden"); $("#result").classList.add("hidden");
+  if (photoURL) URL.revokeObjectURL(photoURL);
+  photoURL = URL.createObjectURL(blob); showOverlay = false; ai = null; topic = "treat";
+  const fd = new FormData(); fd.append("image", blob, "leaf.jpg");
+  if (CFG.demo) fd.append("demo_class", $("#demoClass").value);
+  try {
+    const r = await fetch("/api/analyze", {method: "POST", body: fd});
+    if (!r.ok) throw new Error("bad response");
+    R = await r.json();
+  } catch (e) { R = {route: "retake", reason: "low_confidence", cls: "", confidence: 0, top3: [{names: {en: ""}, p: 0, cls: ""}], ms: {vision: 0}}; }
+  $("#loading").classList.add("hidden"); renderResult();
+}
+function reset() { R = null; ai = null; $("#result").classList.add("hidden"); $("#capture").classList.remove("hidden"); if (!CFG.picam) startCamera(); }
+
+$("#shot").onclick = async () => {
+  if (CFG.picam) {                                   // Raspberry Pi: the app takes the photo with its own camera
+    $("#capture").classList.add("hidden"); $("#loading").classList.remove("hidden");
+    try { const r = await fetch("/api/capture", {method: "POST"}); if (r.ok) { analyze(await r.blob()); return; } } catch (e) {}
+    $("#loading").classList.add("hidden"); $("#capture").classList.remove("hidden"); $("#camNote").textContent = t("noCamera"); return;
+  }
+  const v = $("#video"), c = $("#canvas");
+  if (!stream || !v.videoWidth) { $("#file").click(); return; }
+  c.width = v.videoWidth; c.height = v.videoHeight; c.getContext("2d").drawImage(v, 0, 0);
+  c.toBlob(b => analyze(b), "image/jpeg", 0.9);
+};
+$("#pick").onclick = () => $("#file").click();
+$("#file").onchange = e => { if (e.target.files[0]) analyze(e.target.files[0]); e.target.value = ""; };
+window.addEventListener("online", net); window.addEventListener("offline", net);
+
+(async function init() {
+  try { CFG = await (await fetch("/api/config")).json(); } catch (e) { CFG = {contacts: []}; }
+  if (CFG.demo) {
+    $("#demoBanner").classList.remove("hidden"); $("#demoPick").classList.remove("hidden");
+    $("#demoClass").innerHTML = (CFG.classes || []).map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  }
+  render(); if (CFG.picam) { $("#camNote").textContent = t("picamReady"); } else { startCamera(); }
+})();
+})();
+</script>
+</body>
+</html>

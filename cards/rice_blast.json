@@ -1,0 +1,168 @@
+{
+  "condition_id": "rice_blast",
+  "crop": "rice",
+  "type": "disease",
+  "status": "DRAFT - not reviewed. Verify every field against AAU / ICAR-NRRI / KVK Cachar material before use.",
+
+  "names": {
+    "en": "Rice blast",
+    "hi": "धान का ब्लास्ट रोग (झोंका रोग)",
+    "as": "ধানৰ ব্লাষ্ট ৰোগ",
+    "bn": "ধানের ব্লাস্ট রোগ"
+  },
+
+  "summary": {
+    "en": "Your rice may have blast disease. Check the field daily and stop adding urea. Contact your KVK or agriculture officer for treatment.",
+    "hi": "आपके धान में ब्लास्ट रोग हो सकता है। रोज खेत देखें और यूरिया डालना रोकें। इलाज के लिए अपने केवीके या कृषि अधिकारी से संपर्क करें।",
+    "as": "আপোনাৰ ধানত ব্লাষ্ট ৰোগ হ'ব পাৰে। প্ৰতিদিনে খেতি চাওক আৰু ইউৰিয়া দিয়া বন্ধ কৰক। চিকিৎসাৰ বাবে আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+    "bn": "আপনার ধানে ব্লাস্ট রোগ হতে পারে। প্রতিদিন ক্ষেত দেখুন এবং ইউরিয়া দেওয়া বন্ধ রাখুন। চিকিৎসার জন্য আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।"
+  },
+
+  "symptoms": {
+    "en": "Spots on the leaves shaped like an eye or a spindle, with a grey or whitish centre and a brown edge. In bad cases the neck of the panicle turns brown or black, bends or breaks, and the grains stay empty.",
+    "hi": "पत्तियों पर आँख या तकली के आकार के धब्बे बनते हैं, जिनका बीच का हिस्सा भूरा-सफेद और किनारा गहरा भूरा होता है। ज्यादा प्रकोप में बाली की गर्दन भूरी या काली होकर टूट जाती है और दाने खाली रह जाते हैं।",
+    "as": "পাতত চকুৰ দৰে বা টাকুৰ আকৃতিৰ দাগ হয়। দাগৰ মাজখন ধূসৰ বা বগা আৰু ধাৰ মাটিয়া বৰণৰ। বেছি হ'লে শীহৰ ডিঙি মাটিয়া বা কলা হৈ ভাগি যায় আৰু গুটি খালী হৈ থাকে।",
+    "bn": "পাতায় চোখের মতো বা টাকুর আকারের দাগ পড়ে। দাগের মাঝখানটা ধূসর বা সাদাটে, আর কিনারা বাদামি। বেশি হলে শিষের গলা বাদামি বা কালো হয়ে ভেঙে যায় এবং দানা চিটা থাকে।"
+  },
+
+  "favourable_conditions": {
+    "en": "Cloudy, drizzly and humid weather, heavy dew, cool nights, too much urea, and very close planting.",
+    "hi": "बादल, बूंदाबांदी, ज्यादा नमी, भारी ओस, ठंडी रातें, ज्यादा यूरिया और बहुत पास-पास रोपाई।",
+    "as": "ডাৱৰীয়া বতৰ, জিৰজিৰ বৰষুণ, বেছি আৰ্দ্ৰতা, ঘন নিয়ৰ, ঠাণ্ডা ৰাতি, বেছি ইউৰিয়া আৰু ওচৰে-পাজৰে ৰোৱা।",
+    "bn": "মেঘলা আবহাওয়া, গুঁড়ি গুঁড়ি বৃষ্টি, বেশি আর্দ্রতা, ভারী শিশির, ঠান্ডা রাত, বেশি ইউরিয়া এবং খুব ঘন করে রোপণ।"
+  },
+
+  "actions_cumulative": true,
+  "actions_by_severity": {
+    "mild": {
+      "en": [
+        "Check your field every morning, especially after cloudy or drizzly weather.",
+        "Stop adding urea until the spots stop spreading.",
+        "Pull out badly infected plants and nearby grass weeds, and burn or bury them away from the field."
+      ],
+      "hi": [
+        "हर सुबह खेत देखें, खासकर बादल या बूंदाबांदी के बाद।",
+        "धब्बे फैलना बंद होने तक यूरिया न डालें।",
+        "ज्यादा बीमार पौधों और खेत के पास की घास को उखाड़कर खेत से दूर जला दें या गाड़ दें।"
+      ],
+      "as": [
+        "প্ৰতিদিনে ৰাতিপুৱা খেতি চাওক, বিশেষকৈ ডাৱৰীয়া বা জিৰজিৰ বৰষুণৰ পিছত।",
+        "দাগ বিয়পা বন্ধ নোহোৱালৈকে ইউৰিয়া নিদিব।",
+        "বেছি ৰোগাক্ৰান্ত গছ আৰু খেতিৰ কাষৰ ঘাঁহ উঘালি খেতিৰ পৰা আঁতৰত জ্বলাই দিয়ক বা পুতি দিয়ক।"
+      ],
+      "bn": [
+        "প্রতিদিন সকালে ক্ষেত দেখুন, বিশেষ করে মেঘলা বা গুঁড়ি গুঁড়ি বৃষ্টির পরে।",
+        "দাগ ছড়ানো না থামা পর্যন্ত ইউরিয়া দেবেন না।",
+        "বেশি আক্রান্ত গাছ ও ক্ষেতের পাশের ঘাস তুলে ক্ষেত থেকে দূরে পুড়িয়ে ফেলুন বা মাটিতে পুঁতে দিন।"
+      ]
+    },
+    "moderate": {
+      "en": [
+        "Do not let the field dry out completely; keep a steady water level.",
+        "Contact your KVK or agriculture officer today to confirm the right treatment for your crop stage."
+      ],
+      "hi": [
+        "खेत को पूरी तरह सूखने न दें, पानी का स्तर बनाए रखें।",
+        "आज ही अपने केवीके या कृषि अधिकारी से संपर्क करें और अपनी फसल की अवस्था के हिसाब से सही उपचार पूछें।"
+      ],
+      "as": [
+        "খেতি সম্পূৰ্ণ শুকাই নিদিব, পানীৰ স্তৰ একে ৰাখক।",
+        "আজিয়েই আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক আৰু শস্যৰ অৱস্থা অনুসৰি সঠিক চিকিৎসা জানি লওক।"
+      ],
+      "bn": [
+        "ক্ষেত পুরোপুরি শুকাতে দেবেন না, জল একই মাত্রায় রাখুন।",
+        "আজই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন এবং ফসলের অবস্থা অনুযায়ী সঠিক চিকিৎসা জেনে নিন।"
+      ]
+    },
+    "severe": {
+      "en": [
+        "Contact your KVK or agriculture officer immediately; do not wait.",
+        "Do not spray any product that they have not recommended."
+      ],
+      "hi": [
+        "तुरंत अपने केवीके या कृषि अधिकारी से संपर्क करें, देर न करें।",
+        "जिस दवा की उन्होंने सलाह न दी हो उसका छिड़काव न करें।"
+      ],
+      "as": [
+        "তৎক্ষণাত আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক, পলম নকৰিব।",
+        "তেওঁলোকে পৰামৰ্শ নিদিয়া কোনো ঔষধ ছটিয়াব নালাগে।"
+      ],
+      "bn": [
+        "এখনই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন, দেরি করবেন না।",
+        "তাঁরা যে ওষুধ বলেননি তা স্প্রে করবেন না।"
+      ]
+    }
+  },
+
+  "chemical_options": [],
+  "chemical_options_todo": "Leave empty until filled from a verified, currently valid source (AAU / ICAR package of practices or KVK leaflet). Each entry needs: active_ingredient, dose, water_volume, interval_days, pre_harvest_interval_days, safety (4 languages).",
+
+  "organic_options": {
+    "en": [
+      "Use seed from healthy plants of a variety recommended by your KVK.",
+      "Ask your KVK about bio-control products and whether they suit your field."
+    ],
+    "hi": [
+      "अपने केवीके की सुझाई किस्म के स्वस्थ पौधों का बीज इस्तेमाल करें।",
+      "जैविक नियंत्रण वाले उत्पादों के बारे में केवीके से पूछें कि वे आपके खेत के लिए ठीक हैं या नहीं।"
+    ],
+    "as": [
+      "আপোনাৰ কে.ভি.কে.-এ পৰামৰ্শ দিয়া জাতৰ সুস্থ গছৰ পৰা পোৱা বীজ ব্যৱহাৰ কৰক।",
+      "জৈৱিক নিয়ন্ত্ৰণৰ সামগ্ৰীৰ বিষয়ে কে.ভি.কে.ক সুধক আৰু সেয়া আপোনাৰ খেতিৰ বাবে উপযুক্ত নে নহয় জানি লওক।"
+    ],
+    "bn": [
+      "আপনার কেভিকে যে জাতের পরামর্শ দেয়, তার সুস্থ গাছের বীজ ব্যবহার করুন।",
+      "জৈব নিয়ন্ত্রণের পণ্য সম্পর্কে কেভিকেকে জিজ্ঞাসা করুন এবং তা আপনার ক্ষেতের জন্য উপযুক্ত কিনা জেনে নিন।"
+    ]
+  },
+
+  "prevention": {
+    "en": [
+      "Grow blast-tolerant varieties recommended for your area.",
+      "Use clean, healthy seed and treat it as advised by your KVK.",
+      "Give urea in small split doses instead of one big dose.",
+      "Do not plant too close; keep rows open to air.",
+      "Remove old stubble and weeds after harvest."
+    ],
+    "hi": [
+      "अपने क्षेत्र के लिए सुझाई गई ब्लास्ट सहनशील किस्में लगाएँ।",
+      "साफ और स्वस्थ बीज लें और केवीके की सलाह के अनुसार उसका उपचार करें।",
+      "यूरिया एक बार में ज्यादा देने की जगह छोटी-छोटी मात्रा में बाँटकर दें।",
+      "बहुत पास-पास रोपाई न करें, कतारों में हवा आने दें।",
+      "कटाई के बाद पुराने ठूँठ और खरपतवार हटा दें।"
+    ],
+    "as": [
+      "আপোনাৰ অঞ্চলৰ বাবে পৰামৰ্শ দিয়া ব্লাষ্ট সহনশীল জাতৰ ধান ৰোৱক।",
+      "পৰিষ্কাৰ আৰু সুস্থ বীজ লওক আৰু কে.ভি.কে.ৰ পৰামৰ্শ অনুসৰি বীজ শোধন কৰক।",
+      "ইউৰিয়া এবাৰতে বেছি নিদি অলপ অলপ কৰি ভাগ কৰি দিয়ক।",
+      "বেছি ওচৰে-পাজৰে নুৰুব, শাৰীবোৰত বতাহ সোমাবলৈ দিয়ক।",
+      "ধান চপোৱাৰ পিছত পুৰণি খুঁটা আৰু আগাছা আঁতৰাই পেলাওক।"
+    ],
+    "bn": [
+      "আপনার এলাকার জন্য সুপারিশ করা ব্লাস্ট-সহনশীল জাতের ধান লাগান।",
+      "পরিষ্কার ও সুস্থ বীজ নিন এবং কেভিকে-র পরামর্শ অনুযায়ী বীজ শোধন করুন।",
+      "ইউরিয়া একবারে বেশি না দিয়ে অল্প অল্প করে ভাগ করে দিন।",
+      "খুব ঘন করে রোপণ করবেন না, সারির মধ্যে যেন বাতাস চলাচল করে।",
+      "ধান কাটার পর পুরনো নাড়া ও আগাছা সরিয়ে ফেলুন।"
+    ]
+  },
+
+  "escalate_when": {
+    "en": "If spots spread to many leaves, or the panicle neck turns brown near flowering, contact your KVK or agriculture officer the same day.",
+    "hi": "अगर धब्बे कई पत्तियों पर फैल जाएँ, या फूल आने के आसपास बाली की गर्दन भूरी होने लगे, तो उसी दिन अपने केवीके या कृषि अधिकारी से संपर्क करें।",
+    "as": "যদি দাগ বহুতো পাতত বিয়পি পৰে, বা ফুল ওলোৱাৰ সময়ত শীহৰ ডিঙি মাটিয়া হ'বলৈ ধৰে, তেন্তে সেই দিনাই আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+    "bn": "যদি দাগ অনেক পাতায় ছড়িয়ে পড়ে, বা ফুল আসার সময় শিষের গলা বাদামি হতে শুরু করে, তাহলে সেদিনই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।"
+  },
+
+  "season_risk": {
+    "barak_valley": {
+      "high_months": null,
+      "note": "TODO: confirm high-risk months and rice seasons (Ahu / Sali / Boro) with KVK Cachar or AAU material."
+    }
+  },
+
+  "source": "TODO: cite document name and year (AAU / ICAR-NRRI / KVK Cachar).",
+  "reviewed_by": "pending",
+  "translation_reviewed_by": { "hi": "pending", "as": "pending", "bn": "pending" },
+  "last_reviewed": null
+}

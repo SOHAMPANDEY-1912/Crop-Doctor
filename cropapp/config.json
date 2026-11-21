@@ -1,0 +1,18 @@
+{
+  "advisory_dir": "~/project/advisory",
+  "cards_dir": "~/project/cards",
+  "classes_txt": "~/project/vision/classes.txt",
+  "model_path": "~/project/vision/models/model.onnx",
+  "classes_path": "~/project/vision/models/classes.json",
+  "preprocess_path": "~/project/vision/models/preprocess.json",
+  "thresholds": {"show": 0.75, "possible": 0.5},
+  "demo_default_class": "rice_blast",
+  "host": "127.0.0.1",
+  "port": 5000,
+  "contacts": [
+    {"name": {"en": "KVK Cachar (Silchar)", "bn": "কেভিকে কাছাড় (শিলচর)", "as": "কে.ভি.কে. কাছাৰ (শিলচৰ)", "hi": "केवीके कछार (सिलचर)"},
+     "phone": "03842-278193", "verified": false},
+    {"name": {"en": "Kisan Call Centre (toll free)", "bn": "কিষাণ কল সেন্টার (বিনামূল্যে)", "as": "কিষাণ কল চেণ্টাৰ (বিনামূল্যে)", "hi": "किसान कॉल सेंटर (निःशुल्क)"},
+     "phone": "1800-180-1551", "verified": true}
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "condition_id": "rice_bacterial_leaf_blight",
+  "crop": "rice",
+  "type": "disease",
+  "status": "DRAFT - not reviewed. Verify every field with the KVK / Tea Research Association / AAU material before real use.",
+  "names": {
+    "en": "Bacterial leaf blight (rice)",
+    "hi": "धान का जीवाणु पर्ण झुलसा रोग",
+    "as": "ধানৰ বেক্টেৰিয়া পাত জ্বলা ৰোগ",
+    "bn": "ধানের ব্যাকটেরিয়াজনিত পাতা ঝলসা রোগ"
+  },
+  "summary": {
+    "en": "Your rice may have bacterial leaf blight. Do not add more urea, and do not let water flow from the sick patch into other plots. Contact your KVK or agriculture officer.",
+    "hi": "आपके धान में जीवाणु पर्ण झुलसा रोग हो सकता है। और यूरिया न डालें और बीमार हिस्से का पानी दूसरे खेतों में न जाने दें। अपने केवीके या कृषि अधिकारी से संपर्क करें।",
+    "as": "আপোনাৰ ধানত বেক্টেৰিয়াজনিত পাত জ্বলা ৰোগ হ'ব পাৰে। আৰু ইউৰিয়া নিদিব, আৰু আক্ৰান্ত অংশৰ পানী আন খেতিলৈ যাব নিদিব। আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+    "bn": "আপনার ধানে ব্যাকটেরিয়াজনিত পাতা ঝলসা রোগ হতে পারে। আর ইউরিয়া দেবেন না, আর আক্রান্ত অংশের জল অন্য জমিতে যেতে দেবেন না। আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।"
+  },
+  "symptoms": {
+    "en": "Yellow to orange stripes start at the leaf tip or edges and spread down the leaf with wavy margins. The leaf then dries and turns pale grey or white. Young plants may wilt and dry.",
+    "hi": "पत्ती की नोक या किनारों से पीली से नारंगी धारियाँ शुरू होकर लहरदार किनारों के साथ नीचे फैलती हैं। फिर पत्ती सूखकर हल्की भूरी-सफेद हो जाती है। छोटे पौधे मुरझाकर सूख सकते हैं।",
+    "as": "পাতৰ আগ বা কাষৰ পৰা হালধীয়াৰ পৰা কমলা ৰঙৰ দাগ আৰম্ভ হৈ ঢৌ খেলা কাষৰে সৈতে তললৈ বিয়পে। তাৰ পিছত পাত শুকাই ফেকাচিয়া ধূসৰ বা বগা হৈ পৰে। সৰু গছ ঢলি পৰি শুকাই যাব পাৰে।",
+    "bn": "পাতার ডগা বা কিনারা থেকে হলুদ থেকে কমলা রঙের দাগ শুরু হয়ে ঢেউ খেলানো কিনারা নিয়ে নিচের দিকে ছড়ায়। তারপর পাতা শুকিয়ে ফ্যাকাশে ধূসর বা সাদা হয়ে যায়। ছোট গাছ নেতিয়ে পড়ে শুকিয়ে যেতে পারে।"
+  },
+  "favourable_conditions": {
+    "en": "Warm, wet and windy weather, flooding, too much urea, and leaf injuries. It also spreads through infected seed, stubble and irrigation water.",
+    "hi": "गर्म, नमी वाला और आँधी-बारिश का मौसम, खेत में पानी भरना, ज़्यादा यूरिया और पत्तियों पर चोट। यह संक्रमित बीज, ठूँठ और सिंचाई के पानी से भी फैलता है।",
+    "as": "গৰম, বৰষুণীয়া আৰু বতাহ থকা বতৰ, খেতিত পানী জমা হোৱা, বেছি ইউৰিয়া আৰু পাতত আঘাত। সংক্ৰমিত বীজ, খুঁটা আৰু সেচৰ পানীৰ যোগেদিও বিয়পে।",
+    "bn": "গরম, ভেজা ও ঝোড়ো আবহাওয়া, জমিতে জল জমা, বেশি ইউরিয়া এবং পাতায় আঘাত। সংক্রমিত বীজ, নাড়া ও সেচের জলের মাধ্যমেও ছড়ায়।"
+  },
+  "actions_cumulative": true,
+  "actions_by_severity": {
+    "mild": {
+      "en": [
+        "Check your field every morning and mark the affected patch.",
+        "Stop adding urea until the stripes stop spreading.",
+        "Do not let water flow from the sick patch into other plots, and avoid walking through the field when leaves are wet."
+      ],
+      "hi": [
+        "हर सुबह खेत देखें और बीमार हिस्से पर निशान लगा दें।",
+        "धारियाँ फैलना बंद होने तक यूरिया न डालें।",
+        "बीमार हिस्से का पानी दूसरे खेतों में न जाने दें, और पत्तियाँ गीली हों तो खेत में न घूमें।"
+      ],
+      "as": [
+        "প্ৰতিদিনে ৰাতিপুৱা খেতি চাওক আৰু আক্ৰান্ত অংশত চিন দিয়ক।",
+        "দাগ বিয়পা বন্ধ নোহোৱালৈকে ইউৰিয়া নিদিব।",
+        "আক্ৰান্ত অংশৰ পানী আন খেতিলৈ যাব নিদিব, আৰু পাত তিতি থাকিলে খেতিৰ ভিতৰেদি নুচলিব।"
+      ],
+      "bn": [
+        "প্রতিদিন সকালে ক্ষেত দেখুন এবং আক্রান্ত অংশে চিহ্ন দিন।",
+        "দাগ ছড়ানো না থামা পর্যন্ত ইউরিয়া দেবেন না।",
+        "আক্রান্ত অংশের জল অন্য জমিতে যেতে দেবেন না, আর পাতা ভেজা থাকলে ক্ষেতের ভেতর দিয়ে হাঁটবেন না।"
+      ]
+    },
+    "moderate": {
+      "en": [
+        "Contact your KVK or agriculture officer today to confirm the right treatment for your crop stage."
+      ],
+      "hi": [
+        "आज ही अपने केवीके या कृषि अधिकारी से संपर्क करें और अपनी फसल की अवस्था के हिसाब से सही उपचार पूछें।"
+      ],
+      "as": [
+        "আজিয়েই আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক আৰু শস্যৰ অৱস্থা অনুসৰি সঠিক চিকিৎসা জানি লওক।"
+      ],
+      "bn": [
+        "আজই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন এবং ফসলের অবস্থা অনুযায়ী সঠিক চিকিৎসা জেনে নিন।"
+      ]
+    },
+    "severe": {
+      "en": [
+        "Contact your KVK or agriculture officer immediately; do not wait.",
+        "Do not spray any product that they have not recommended."
+      ],
+      "hi": [
+        "तुरंत अपने केवीके या कृषि अधिकारी से संपर्क करें, देर न करें।",
+        "जिस दवा की उन्होंने सलाह न दी हो उसका छिड़काव न करें।"
+      ],
+      "as": [
+        "তৎক্ষণাত আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক, পলম নকৰিব।",
+        "তেওঁলোকে পৰামৰ্শ নিদিয়া কোনো ঔষধ ছটিয়াব নালাগে।"
+      ],
+      "bn": [
+        "এখনই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন, দেরি করবেন না।",
+        "তাঁরা যে ওষুধ বলেননি তা স্প্রে করবেন না।"
+      ]
+    }
+  },
+  "chemical_options": [],
+  "chemical_options_todo": "Leave empty until filled from a verified, currently valid source (AAU / ICAR / TRA package of practices or KVK leaflet).",
+  "organic_options": {
+    "en": [
+      "Ask your KVK about bio-control products and whether they suit your field."
+    ],
+    "hi": [
+      "जैविक नियंत्रण वाले उत्पादों के बारे में केवीके से पूछें कि वे आपके खेत के लिए ठीक हैं या नहीं।"
+    ],
+    "as": [
+      "জৈৱিক নিয়ন্ত্ৰণৰ সামগ্ৰীৰ বিষয়ে কে.ভি.কে.ক সুধক আৰু সেয়া আপোনাৰ খেতিৰ বাবে উপযুক্ত নে নহয় জানি লওক।"
+    ],
+    "bn": [
+      "জৈব নিয়ন্ত্রণের পণ্য সম্পর্কে কেভিকেকে জিজ্ঞাসা করুন এবং তা আপনার ক্ষেতের জন্য উপযুক্ত কিনা জেনে নিন।"
+    ]
+  },
+  "prevention": {
+    "en": [
+      "Grow varieties that your KVK recommends for blight in your area.",
+      "Use clean, healthy seed.",
+      "Give urea in small split doses instead of one big dose.",
+      "Do not clip the tips of seedlings at transplanting.",
+      "After harvest, remove stubble and weeds."
+    ],
+    "hi": [
+      "अपने क्षेत्र के लिए केवीके द्वारा सुझाई गई झुलसा-सहनशील किस्में लगाएँ।",
+      "साफ और स्वस्थ बीज लें।",
+      "यूरिया एक बार में ज्यादा देने की जगह छोटी-छोटी मात्रा में बाँटकर दें।",
+      "रोपाई के समय पौध की नोक न काटें।",
+      "कटाई के बाद ठूँठ और खरपतवार हटा दें।"
+    ],
+    "as": [
+      "আপোনাৰ অঞ্চলৰ বাবে কে.ভি.কে.-এ পৰামৰ্শ দিয়া জ্বলা-সহনশীল জাতৰ ধান ৰোৱক।",
+      "পৰিষ্কাৰ আৰু সুস্থ বীজ লওক।",
+      "ইউৰিয়া এবাৰতে বেছি নিদি অলপ অলপ কৰি ভাগ কৰি দিয়ক।",
+      "ৰোৱাৰ সময়ত গছৰ আগ নাকাটিব।",
+      "ধান চপোৱাৰ পিছত পুৰণি খুঁটা আৰু আগাছা আঁতৰাই পেলাওক।"
+    ],
+    "bn": [
+      "আপনার এলাকার জন্য কেভিকে যে ঝলসা-সহনশীল জাতের পরামর্শ দেয় তা লাগান।",
+      "পরিষ্কার ও সুস্থ বীজ নিন।",
+      "ইউরিয়া একবারে বেশি না দিয়ে অল্প অল্প করে ভাগ করে দিন।",
+      "রোপণের সময় চারার ডগা কাটবেন না।",
+      "ধান কাটার পর নাড়া ও আগাছা সরিয়ে ফেলুন।"
+    ]
+  },
+  "escalate_when": {
+    "en": "If the stripes spread to many leaves, or young plants start to wilt and dry, contact your KVK or agriculture officer the same day.",
+    "hi": "अगर धारियाँ कई पत्तियों पर फैल जाएँ, या छोटे पौधे मुरझाकर सूखने लगें, तो उसी दिन अपने केवीके या कृषि अधिकारी से संपर्क करें।",
+    "as": "যদি দাগ বহুতো পাতত বিয়পি পৰে, বা সৰু গছ ঢলি পৰি শুকাবলৈ ধৰে, তেন্তে সেই দিনাই আপোনাৰ কে.ভি.কে. বা কৃষি বিষয়াৰ সৈতে যোগাযোগ কৰক।",
+    "bn": "যদি দাগ অনেক পাতায় ছড়িয়ে পড়ে, বা ছোট গাছ নেতিয়ে পড়ে শুকাতে শুরু করে, তাহলে সেদিনই আপনার কেভিকে বা কৃষি আধিকারিকের সঙ্গে যোগাযোগ করুন।"
+  },
+  "season_risk": {
+    "barak_valley": {
+      "high_months": null,
+      "note": "TODO: confirm with KVK Cachar / TRA material."
+    }
+  },
+  "source": "TODO: cite document name and year.",
+  "reviewed_by": "pending",
+  "translation_reviewed_by": {
+    "hi": "pending",
+    "as": "pending",
+    "bn": "pending"
+  },
+  "last_reviewed": null
+}

@@ -1,0 +1,122 @@
+[
+ {
+  "card": "rice_bacterial_leaf_blight",
+  "severity": "mild",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 37.9,
+  "decode_tok_s": 12.3399,
+  "text": "Yellow to orange stripes start at the leaf tip or edges and spread down the leaf with wavy margins. The symptoms of Bacterial leaf blight (rice) are yellow to orange stripes that start at the leaf tip or edges and spread down the leaf with wavy margins. The symptoms of Bacterial leaf blight (rice) are yellow to orange stripes that start at the leaf tip or edges and spread down the leaf with wavy margins. The symptoms of Bacterial leaf blight (rice) are yellow to orange stripes that start at the leaf tip or edges and spread down the leaf with wavy margins."
+ },
+ {
+  "card": "rice_bacterial_leaf_blight",
+  "severity": "moderate",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 29.7,
+  "decode_tok_s": 12.6276,
+  "text": "Yellow to orange stripes start at the leaf tip or edges and spread down the leaf with wavy margins. The symptoms of Bacterial leaf blight (rice) are caused by the bacterial infection of the plant. The disease spreads through infected seed, stubble, and irrigation water. The disease is most severe in areas with warm, wet, and windy weather, flooding, and too much urea."
+ },
+ {
+  "card": "rice_bacterial_leaf_blight",
+  "severity": "severe",
+  "lang": "en",
+  "shown": false,
+  "guard": "ungrounded",
+  "seconds": 42.1,
+  "decode_tok_s": 11.9169,
+  "text": "Yellow to orange stripes start at the leaf tip or edges and spread down the leaf with wavy margins.\n\nThe symptoms of bacterial leaf blight (rice) are caused by the bacterial disease Xanthomonas schenckian, which causes the yellow to orange stripes.\n\nThe disease spreads through infected seed, stubble, and irrigation water.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may wilt and dry.\n\nThe disease is most severe in areas with warm, wet, and windy weather, flooding, and excessive use of urea.\n\nThe disease causes the leaf to dry and turn pale grey or white.\n\nYoung plants may"
+ },
+ {
+  "card": "rice_blast",
+  "severity": "mild",
+  "lang": "en",
+  "shown": false,
+  "guard": "ungrounded",
+  "seconds": 11.8,
+  "decode_tok_s": 13.5287,
+  "text": "The problem is Rice Blast, a fungal disease that causes spots on the leaves of rice plants.\n\nRice Blast is a fungal disease that causes spots on the leaves of rice plants.\n\nIt usually makes the rice plants turn brown or black, bend or break, and the grains stay empty.\n\nThe symptoms include spots on the leaves shaped like an eye or a spindle, with a grey or whitish centre and a brown edge."
+ },
+ {
+  "card": "rice_blast",
+  "severity": "moderate",
+  "lang": "en",
+  "shown": false,
+  "guard": "ungrounded",
+  "seconds": 22.1,
+  "decode_tok_s": 12.8396,
+  "text": "The problem is Rice Blast, a fungal disease that causes spots on the leaves of rice plants.\n\nRice Blast is caused by a fungus that attacks the leaves of rice plants, causing the characteristic spots and edges.\n\nThe disease is more likely to occur in areas with heavy dew, cool nights, and cloudy weather.\n\nThe symptoms of Rice Blast include spots on the leaves shaped like an eye or a spindle, with a grey or whitish centre and a brown edge.\n\nThe disease is also more likely to occur in areas with too much urea, and where the plants are not properly watered.\n\nThe symptoms of Rice Blast are usually most severe in the fall, but can also occur in the spring.\n\nThe most important actions right now are to:\n\nCheck your field every morning, especially after cloudy or drizzly weather.\nStop adding urea until the spots stop spreading.\nPull out badly infected plants and nearby grass weeds, and burn or bury them away from the field.\nDo not let the field dry out completely; keep a steady water level."
+ },
+ {
+  "card": "rice_blast",
+  "severity": "severe",
+  "lang": "en",
+  "shown": false,
+  "guard": "ungrounded",
+  "seconds": 20.5,
+  "decode_tok_s": 12.9563,
+  "text": "The problem is Rice Blast, a severe disease that affects rice crops in the Barak Valley, Assam, India.\n\nRice Blast causes symptoms such as spots on the leaves shaped like an eye or a spindle, with a grey or whitish centre and a brown edge. In bad cases, the neck of the panicle turns brown or black, bends or breaks, and the grains stay empty.\n\nThe disease is caused by a fungus that attacks the rice plant, causing the symptoms described above. The symptoms are usually most severe in cloudy, drizzly and humid weather, heavy dew, cool nights, too much urea, and very close planting.\n\nThe one or two most important actions right now are to check your field every morning, especially after cloudy or drizzly weather, and stop adding urea until the spots stop spreading. Pull out badly infected plants and nearby grass weeds, and burn or bury them away from the field."
+ },
+ {
+  "card": "tea_blister_blight",
+  "severity": "mild",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 16.0,
+  "decode_tok_s": 13.3588,
+  "text": "Blister blight (tea) is a disease that affects young tea plants. It causes small pale, see-through spots to appear on young leaves and grow into round lesions. Under the leaf, each spot swells like a blister with a whitish, velvety coating. Later the lesions turn brown and dry."
+ },
+ {
+  "card": "tea_blister_blight",
+  "severity": "moderate",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 24.7,
+  "decode_tok_s": 12.8699,
+  "text": "Blister blight (tea) is a disease that affects tea plants. It causes small pale, see-through spots to appear on young leaves and grow into round lesions. Under the leaf, each spot swells like a blister with a whitish, velvety coating. Later the lesions turn brown and dry."
+ },
+ {
+  "card": "tea_blister_blight",
+  "severity": "severe",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 15.2,
+  "decode_tok_s": 13.3736,
+  "text": "Blister blight (tea) is a serious disease that affects tea plants. It causes small, pale, see-through spots to appear on young leaves and grow into round lesions. These spots swell like blisters with a whitish, velvety coating. The lesions turn brown and dry, and can be fatal to the plant."
+ },
+ {
+  "card": "tea_red_spider_mite",
+  "severity": "mild",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 39.5,
+  "decode_tok_s": 12.1659,
+  "text": "Mature tea leaves turn dull, bronze or rusty-red on the upper side. The mites are tiny and easiest to see with a hand lens. The mites are tiny and easiest to see with a hand lens. The mites are tiny and easiest to see with a hand lens."
+ },
+ {
+  "card": "tea_red_spider_mite",
+  "severity": "moderate",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 11.1,
+  "decode_tok_s": 13.4202,
+  "text": "Mature tea leaves turn dull, bronze or rusty-red on the upper side, often first along the midrib and veins. Fine webbing may appear. In bad cases the leaves dry up and fall. The mites are tiny and easiest to see with a hand lens."
+ },
+ {
+  "card": "tea_red_spider_mite",
+  "severity": "severe",
+  "lang": "en",
+  "shown": true,
+  "guard": null,
+  "seconds": 12.7,
+  "decode_tok_s": 13.283,
+  "text": "Mature tea leaves turn dull, bronze or rusty-red on the upper side, often first along the midrib and veins. Fine webbing may appear. In bad cases the leaves dry up and fall. The mites are tiny and easiest to see with a hand lens."
+ }
+]
