@@ -31,7 +31,7 @@ The Llama files are not in this repo: they come from the ExecuTorch deployment (
 ## Safety
 Llama text is shown only if it passes checks (no doses or chemicals, grounded in the card,
 no repeated sentences, no unsupported cause or danger words). Otherwise only the vetted card is shown.
-Advice only: confirm any treatment with your KVK or agriculture officer
+Advice only: confirm any treatment with your KVK or agriculture officer.
 
 ## Evaluation
 `eval/llama_passrate.py` runs 12 English prompts; results are in `data/llama_passrate_final.json`.
